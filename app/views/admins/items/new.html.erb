@@ -21,7 +21,7 @@
     </tr>
     <tr>
       <td>ジャンル</td>
-      <td>enumで指定</td>
+      <td><%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "--選択してください--"  %></td>
     </tr>
     <tr>
       <td>税抜価格</td>
@@ -29,7 +29,7 @@
     </tr>
     <tr>
       <td>販売ステータス</td>
-      <td>enumで指定</td>
+      <td><%= f.select :is_active, [["販売中",true],["販売停止中",false]] %></td>
     </tr>
   </table>
   <%= f.submit '新規登録' %>
