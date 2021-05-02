@@ -1,0 +1,43 @@
+<%# if @item.errors.any? %>
+  <!-- <div class="alert alert-warning">
+    <ul>
+      <%# @item.errors.full_messages.each do |message| %>
+        <li><%#= message %></li>
+      <%# end %>
+    </ul>
+  </div>
+<%# end %> -->  <!-- エラー文の表示　-->
+
+
+<h1>商品一覧</h1>
+<%= link_to "+", new_admins_item_path %>
+
+<table>
+  <tr>
+    <th>商品ID</th>
+    <th>商品名</th>
+    <th>税抜価格</th>
+    <th>ジャンル</th>
+    <th>ステータス</th>
+  </tr>
+                                <tr>
+                                  <td>1</td>
+                                  <td><%= link_to "ザッハトルテ" %></td>
+                                  <td>1200</td>
+                                  <td>ケーキ</td>
+                                  <td>販売中</td>
+                                </tr>
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td>
+        <%= link_to admins_item_path(item.id) do %>
+          <%= item.name %>
+        <% end %>
+      </td>
+      <td><%= item.price %></td>
+      <td><%#= @genre.name(item.genre_id) %></td>
+      <td><%= item.is_active %></td>
+    </tr>
+  <% end %>
+</table>

@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_151457) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "item_id"
-    t.integer "cudtomer_id"
+    t.integer "custotomer_id"
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_151457) do
     t.string "name"
     t.integer "total_payment"
     t.integer "shipping_cost"
-    t.integer "patment_method"
+    t.integer "payment_method"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
