@@ -18,12 +18,16 @@ Rails.application.routes.draw do
     registrations: 'customers/registrations'
   }
 
-  root to: 'homes#top'
-  resources :customers, only: [:show, :edit, :update]
-  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-  resources :cart_items, only: [:index, :update]
-  resources :items, only: [:index, :show]
-  resources :orders, only: [:new, :create, :index, :show]
+  scope module: :customers do
+    root to: 'homes#top'
+    get '/homes/about' => 'homes#about'
+    resources :customers, only: [:show, :edit, :update]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+    resources :items, only: [:index, :show]
+    resources :orders, only: [:new, :create, :index, :show]
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

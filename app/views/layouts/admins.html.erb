@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NaganoCake</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <hearder>
+      <h1>LOGO</h1>
+      <%= link_to "商品一覧", admins_items_path %>
+      <%= link_to "会員一覧", admins_customers_path %>
+      <%= link_to "注文履歴一覧", admins_root_path %>
+      <%= link_to "ジャンル一覧", admins_genres_path %>
+      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+    </hearder>
+    <%= yield %>
+    <footer></footer>
+  </body>
+</html>
