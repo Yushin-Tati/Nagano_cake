@@ -19,8 +19,4 @@ class Customers::ItemsController < Customers::ApplicationController
     end
   end
 
-  def tax_price
-    items.price * 1.08
-  end
-
 end

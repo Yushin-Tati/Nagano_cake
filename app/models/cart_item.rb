@@ -6,9 +6,5 @@ class CartItem < ApplicationRecord
     item.price * amount
   end
 
-  def total_price
-    cart_items.to_a.sum { |item| item.subtotal_price }
-  end
-
 
 end

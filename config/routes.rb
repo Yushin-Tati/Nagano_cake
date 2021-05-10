@@ -21,11 +21,16 @@ Rails.application.routes.draw do
   scope module: :customers do
     root to: 'homes#top'
     get '/homes/about' => 'homes#about'
+    get '/customers/unsubscribe' => 'customers#unsubscribe'
+    patch '/customers/withdraw' => 'customers#withdraw'
+    #get '/customers/my_page' => 'customers#show'
     resources :customers, only: [:show, :edit, :update]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-    resources :cart_items, only: [:index, :update, :destroy, :create]
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+    resources :cart_items, only: [:index, :update, :destroy, :create]
     resources :items, only: [:index, :show]
+    post '/orders/confirm' => 'orders#confirm'
+    get '/orders/complete' => 'orders#complete'
     resources :orders, only: [:new, :create, :index, :show]
   end
 
