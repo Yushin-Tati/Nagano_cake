@@ -1,7 +1,8 @@
 class Customers::OrdersController < Customers::ApplicationController
-  
+
   def index
-    @orders = Order.where(customer_id: current_customer.id).order(id: "DESC")
+    @orders = current_customer.orders.order(id: "DESC")
+    @order_details = OrderDetail.all
   end
 
   def new
@@ -69,13 +70,6 @@ class Customers::OrdersController < Customers::ApplicationController
   end
 
   def complete
-  end
-
-
-  def index
-  end
-
-  def show
   end
 
   private

@@ -18,6 +18,17 @@ class Customers::CustomersController < Customers::ApplicationController
       render :edit
     end
   end
+  
+  def unsubscribe
+  end
+  
+  def withdraw
+    @customer = Customer.find(params[:id])
+    @customer.update(is_active: false)
+    reset_session
+    redirect_to root_path
+  end
+    
 
   private
 
