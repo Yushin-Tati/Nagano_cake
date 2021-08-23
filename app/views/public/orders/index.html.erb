@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <div　class="container">
+      <h2>注文履歴一覧</h2>
+    </div>
+<div class="container">
+<div class="row">
+		<div class="col-xs-10">
+			<table class="table table-hover table-bordered">
+				<thead>
+          <thead>
+            <tr class="active">
+              <td class="col-xs-1">
+                注文日
+              </td>
+              <td class="col-xs-4">
+                配送先
+              </td>
+              <td class="col-xs-2">
+                注文商品
+              </td>
+              <td class="col-xs-1">
+                支払金額
+              </td>
+              <td class="col-xs-1">
+                ステータス
+              </td>
+              <td class="col-xs-1">
+                注文詳細
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+              <tr>
+                <td>
+                	<br>
+                	<%= order.created_at.strftime("%Y/%m/%d") %>
+                </td>
+                <td>
+                  <%= order.postal_code %><br>
+                    <%= order.address %><br>
+                    <%= order.name %><br>
+                </td>
+                <td>
+                  <% order.order_items.each do |order_item| %>
+                    <% total_payment = 0 %><br>
+                    <%= order_item.item.name %><br>
+                    <% @total_payment = @total_payment + order_item.price * order_item.amount %>
+                  <% end %>
+                </td>
+                <td>
+                  <br>
+                   <p><%= (@total_payment + order.postage).floor.to_s(:delimited) %>円</p>
+                </td>
+                <td>
+                  <br>
+                  <%= order.order_status %>
+                </td>
+                <td>
+                  <%= link_to "表示する",public_order_path(order.id), class:"btn btn-primary" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+			</table>
+		</div>
+	</div>
+        <%= paginate @orders %>
+      </div>
+  </div>
+</div>
